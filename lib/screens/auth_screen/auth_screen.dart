@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/screens/auth_screen/auth_widget.dart';
 
 import '../../models/state.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+class AuthScreen extends StatelessWidget {
+  const AuthScreen({super.key});
 
   @override
   Widget build(context) {
@@ -29,18 +29,7 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              OutlinedButton.icon(
-                  icon: const Icon(Icons.arrow_right_alt_rounded),
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: const Color(0xff401201),  
-                  ),
-                  onPressed: state.startQuiz,
-                  label: const Text(
-                    "Start the Quiz",
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  )),
+                  const AuthWidget()
             ],
           ),
         );

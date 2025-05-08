@@ -4,3 +4,15 @@
 
 Developed as an example for COMP3130 at Macquarie University.
 
+## Adding Firebase
+
+The following steps were followed to add Firebase Auth to this project.
+
+- Set up a Firebase project via the Firebase console (<https://console.firebase.google.com>)
+- Install the `firebase` command line tool <https://firebase.google.com/docs/cli>
+- Login with the firebase cli: `firebase login`
+- Configure your local project to link to the Firebase project you just created: `firebase configure`
+  - this will ask you which platforms you want to configure and creates some configuration files in those sub-folders
+- Add firebase auth to the project dependencies: `flutter pub add firebase_auth`
+- Add the code to call the firebase auth services
+
