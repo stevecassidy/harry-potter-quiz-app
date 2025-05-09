@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthWidget extends StatefulWidget {
-  const AuthWidget({super.key});
+  // optional auth argument to allow mocking in tests
+  final FirebaseAuth auth;
+  AuthWidget({super.key, FirebaseAuth? auth}) :
+    auth = auth ?? FirebaseAuth.instance;
 
   @override
   State<AuthWidget> createState() => _AuthWidgetState();
@@ -10,6 +13,7 @@ class AuthWidget extends StatefulWidget {
 
 class _AuthWidgetState extends State<AuthWidget> {
   bool _isLoginView = true;
+  bool _loginSucceess = false;
   
   // Controllers for login
   final _loginEmailController = TextEditingController();
@@ -34,13 +38,14 @@ class _AuthWidgetState extends State<AuthWidget> {
     // Simple login handling
     final email = _loginEmailController.text;
     final password = _loginPasswordController.text;
-    
+
     print('Login attempt with: $email');
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential = await widget.auth.signInWithEmailAndPassword(
         email: email,
         password: password
       );
+      _loginSucceess = true;
       print(credential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -64,10 +69,11 @@ class _AuthWidgetState extends State<AuthWidget> {
     
     print('Registration attempt with: $email');
     try {
-      final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      final credential = await widget.auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+      _loginSucceess = true;
       print(credential);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -83,6 +89,16 @@ class _AuthWidgetState extends State<AuthWidget> {
 
   @override
   Widget build(BuildContext context) {
+    print('_loginSucceess: $_loginSucceess');
+
+    if (_loginSucceess) {
+      return const Scaffold(
+        body: Center(
+          child: Text('Login successful!'),
+        ),
+      );
+    }
+
     return Card(
       margin: const EdgeInsets.all(16.0),
       child: Padding(

@@ -7,10 +7,13 @@ import 'package:quiz_app/app_quiz.dart';
 import 'package:quiz_app/models/state.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
+import 'firebase_test_helpers.dart';
 import 'questions.dart';
 import 'state_test.mocks.dart';
 
 void main() {
+
+  setupFirebaseCoreMocks();
 
   final client = MockClient();
 
@@ -22,11 +25,11 @@ void main() {
     
     await tester.pumpWidget(ChangeNotifierProvider(
          create: (context) => StateModel(client),
-         child: const Quiz(),
+         child:  MaterialApp(home: Quiz(auth: mockFirebaseAuth)),
     ));
 
     // should start showing the home screen
-    final titleFinder = find.text("Harry Potter Quiz App");
+    final titleFinder = find.text("COMP3130 Quiz App");
     final startFinder = find.text("Start the Quiz");
 
     expect(titleFinder, findsOneWidget);

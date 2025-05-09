@@ -1,5 +1,3 @@
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,13 +10,16 @@ import 'package:quiz_app/screens/results_screen/app_results_screen.dart';
 import 'models/state.dart';
 
 class Quiz extends StatelessWidget {
-  const Quiz({super.key});
+  final FirebaseAuth? auth;
+  const Quiz({super.key, this.auth});
   
   @override
   Widget build(context) {
-    
- // Get the current user
-    final User? currentUser = FirebaseAuth.instance.currentUser;
+    // allow injection of FirebaseAuth instance (for testing)
+    final firebaseAuth = auth ?? FirebaseAuth.instance;
+  
+    // Get the current user
+    final User? currentUser = firebaseAuth.currentUser;
     print(currentUser);
 
     // Use user information

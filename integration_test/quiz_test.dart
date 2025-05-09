@@ -6,6 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app/app_quiz.dart';
 import 'package:quiz_app/models/state.dart';
 
+import '../test/firebase_test_helpers.dart';
+
 
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized(); // NEW
@@ -13,15 +15,17 @@ void main() {
   testWidgets('test the quiz',
       (tester) async {
 
+    setupFirebaseCoreMocks();
+
     await tester.pumpWidget(ChangeNotifierProvider(
          create: (context) => StateModel(http.Client()),
-         child: const Quiz(),
+         child: MaterialApp(home: Quiz(auth: mockFirebaseAuth)),
     ));
 
     await tester.pump(const Duration(seconds: 3));
 
     // should start showing the home screen
-    final titleFinder = find.text("Harry Potter Quiz App");
+    final titleFinder = find.text("COMP3130 Quiz App");
     final startFinder = find.text("Start the Quiz");
 
     expect(titleFinder, findsOneWidget);
