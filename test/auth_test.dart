@@ -1,16 +1,28 @@
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/screens/auth_screen/auth_widget.dart';
-import 'firebase_test_helpers.dart';
 
 void main() {
 
-  setupFirebaseCoreMocks();
-
   testWidgets('Login Form', (WidgetTester tester) async {
 
-    final email = mockUser.email!;
+    final email = "test@example.com";
     final password = "password123";
+
+    // Create a mock user
+    final mockUser = MockUser(
+      isAnonymous: false,
+      uid: 'test-user-id',
+      email: email,
+      displayName: 'Test User',
+    );
+
+    // Create a mock auth provider
+    final mockFirebaseAuth = MockFirebaseAuth(
+      signedIn: false,
+      mockUser: mockUser,
+    );
 
     // no current user yet
     expect(mockFirebaseAuth.currentUser, null);
