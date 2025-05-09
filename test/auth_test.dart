@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart' as Mokito;
-import 'package:mockito/mockito.dart';
 import 'package:quiz_app/screens/auth_screen/auth_widget.dart';
 import 'firebase_test_helpers.dart';
 
