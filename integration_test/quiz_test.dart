@@ -1,3 +1,4 @@
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http; 
@@ -6,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:quiz_app/app_quiz.dart';
 import 'package:quiz_app/models/state.dart';
 
-import '../test/firebase_test_helpers.dart';
 
 
 void main() {
@@ -14,8 +14,7 @@ void main() {
 
   testWidgets('test the quiz',
       (tester) async {
-
-    setupFirebaseCoreMocks();
+    final mockFirebaseAuth = MockFirebaseAuth();
 
     await tester.pumpWidget(ChangeNotifierProvider(
          create: (context) => StateModel(http.Client()),

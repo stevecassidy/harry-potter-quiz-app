@@ -8,6 +8,8 @@ void main() {
   testWidgets('Login Form', (WidgetTester tester) async {
 
     final email = "test@example.com";
+    // mock implementation doesn't care about the password - no way to 
+    // have a failed login, here it is for completeness though
     final password = "password123";
 
     // Create a mock user
