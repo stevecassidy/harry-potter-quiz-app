@@ -6,6 +6,7 @@ import '../../models/state.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+
   @override
   Widget build(context) {
     return Consumer<StateModel>(
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               const Text(
-                "Harry Potter Quiz App",
+                "COMP3130 Quiz App",
                 style: TextStyle(
                   color: Color(0xff401201),
                   fontSize: 22,
@@ -39,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 16,
                     ),
-                  ))
+                  )),
             ],
           ),
         );

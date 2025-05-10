@@ -1,5 +1,6 @@
 
 import 'dart:convert';
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +13,7 @@ import 'state_test.mocks.dart';
 
 void main() {
 
+  final mockFirebaseAuth = MockFirebaseAuth();
   final client = MockClient();
 
   when(client.get(Uri.parse('https://stevecassidy.github.io/harry-potter-quiz-app/lib/data/questions.json')))
@@ -22,11 +24,11 @@ void main() {
     
     await tester.pumpWidget(ChangeNotifierProvider(
          create: (context) => StateModel(client),
-         child: const Quiz(),
+         child:  MaterialApp(home: Quiz(auth: mockFirebaseAuth)),
     ));
 
     // should start showing the home screen
-    final titleFinder = find.text("Harry Potter Quiz App");
+    final titleFinder = find.text("COMP3130 Quiz App");
     final startFinder = find.text("Start the Quiz");
 
     expect(titleFinder, findsOneWidget);

@@ -1,3 +1,4 @@
+import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http; 
@@ -7,21 +8,23 @@ import 'package:quiz_app/app_quiz.dart';
 import 'package:quiz_app/models/state.dart';
 
 
+
 void main() {
   IntegrationTestWidgetsFlutterBinding.ensureInitialized(); // NEW
 
   testWidgets('test the quiz',
       (tester) async {
+    final mockFirebaseAuth = MockFirebaseAuth();
 
     await tester.pumpWidget(ChangeNotifierProvider(
          create: (context) => StateModel(http.Client()),
-         child: const Quiz(),
+         child: MaterialApp(home: Quiz(auth: mockFirebaseAuth)),
     ));
 
     await tester.pump(const Duration(seconds: 3));
 
     // should start showing the home screen
-    final titleFinder = find.text("Harry Potter Quiz App");
+    final titleFinder = find.text("COMP3130 Quiz App");
     final startFinder = find.text("Start the Quiz");
 
     expect(titleFinder, findsOneWidget);

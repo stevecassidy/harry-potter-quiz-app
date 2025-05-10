@@ -27,7 +27,7 @@ void main() {
                home:  HomeScreen()
           )));
 
-    final titleFinder = find.text("Harry Potter Quiz App");
+    final titleFinder = find.text("COMP3130 Quiz App");
     final startFinder = find.text("Start the Quiz");
 
     expect(titleFinder, findsOneWidget);
