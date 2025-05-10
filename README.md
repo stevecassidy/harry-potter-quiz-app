@@ -1,4 +1,4 @@
-<a href="https://github.com/charanyaram/harry-potter-quiz-app/actions"><img src="https://github.com/charanyaram/harry-potter-quiz-app/workflows/test-harry-potter/badge.svg" alt="Build Status"></a>
+<a href="https://github.com/stevecassidy/harry-potter-quiz-app/actions"><img src="https://github.com/stevecassidy/harry-potter-quiz-app/workflows/test-harry-potter/badge.svg" alt="Build Status"></a>
 
 # Harry Potter Quiz App
 
@@ -16,4 +16,9 @@ The following steps were followed to add Firebase Auth to this project.
   - this will ask you which platforms you want to configure and creates some configuration files in those sub-folders
 - Add firebase auth to the project dependencies: `flutter pub add firebase_auth`
 - Add the code to call the firebase auth services
+
+## Testing Firebase
+
+See the [FlutterFire](https://firebase.flutter.dev/docs/testing/testing/) website for some details on
+testing with Firebase.
 
