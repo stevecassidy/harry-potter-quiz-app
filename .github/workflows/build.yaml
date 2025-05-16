@@ -49,6 +49,8 @@ jobs:
         run: flutter test --coverage
 
       - name: 🏗️ Build APKs
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: flutter build apk --release --split-per-abi
 
       - name: 📦 Prepare artifacts
