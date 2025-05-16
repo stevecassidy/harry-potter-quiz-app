@@ -37,6 +37,11 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
       - name: 🦋 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
@@ -48,15 +53,13 @@ jobs:
       - name: 🔥 Install Firebase CLI
         run: npm install -g firebase-tools
         
-      # Method 1: Using Firebase CLI to download the config file
-      - name: 📥 Download Firebase Configuration
+      - name: 🔧 Configure Firebase with FlutterFire
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
         run: |
-          firebase use $FIREBASE_PROJECT_ID --token $FIREBASE_TOKEN
-          firebase apps:sdkconfig android $FIREBASE_APP_ID --token $FIREBASE_TOKEN > android/app/google-services.json
+          dart pub global activate flutterfire_cli
+          flutterfire configure --project=$FIREBASE_PROJECT_ID --token=$FIREBASE_TOKEN --platforms=android --yes
 
       - name: ✅ Run tests
         run: flutter test --coverage
