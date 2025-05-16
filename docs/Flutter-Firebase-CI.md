@@ -53,3 +53,8 @@ This will create the config files we deleted above (at least the android version
 The workflow should run and if it works will generate the APK file for your app.  You should be able to download the APK by viewing the successful workflow page on GitHub (click on Actions, then click on the 
 build workflow, the APK download should be at the bottom of that page).
 
+**Note** If your Flutter project is in a sub-directory of your main repository then you need to
+modify the workflow to set a working directory.  See the comment near the top of the
+workflow file.  Uncomment the `working-directory: ` line and enter your flutter project
+directory name.   If the workflow fails, check that the spelling is correct, including upper/lower case.
+

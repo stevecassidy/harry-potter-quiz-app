@@ -21,7 +21,7 @@ concurrency:
 defaults:
   run:
     shell: bash
-    working-directory: ./project-dir
+   # working-directory: project-dir
 
 
 jobs:
