@@ -16,6 +16,14 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+# if your Flutter project is in a sub-directory of this repo, uncomment
+# the line below and change `project-dir` to your project directory name
+defaults:
+  run:
+    shell: bash
+    working-directory: ./project-dir
+
+
 jobs:
   build_and_release:
     runs-on: ubuntu-latest
