@@ -9,11 +9,14 @@ import 'package:quiz_app/screens/auth_screen/auth_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+ 
+  // Ensure Flutter is initialized before using platform channels
+  WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
   );
-  
+
   runApp(
     ChangeNotifierProvider(
         create: (context) => StateModel(http.Client()),
@@ -34,4 +37,6 @@ Future<void> main() async {
         )
     )
   );
+
+
 }
