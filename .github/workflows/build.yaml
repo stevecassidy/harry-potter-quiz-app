@@ -52,6 +52,7 @@ jobs:
         run: flutter build apk --release --split-per-abi
 
       - name: 📦 Prepare artifacts
-        run: |
-          mkdir -p artifacts
-          cp build/app/outputs/flutter-apk/*.apk artifacts/
+        uses: actions/upload-artifact@v4
+        with:
+          name: latest-apk-build
+          path: build/app/outputs/flutter-apk/*.apk
